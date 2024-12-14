@@ -22,8 +22,9 @@ def set_random_seed(random_seed=1024):
     np.random.seed(random_seed)
     torch.manual_seed(random_seed)
     torch.cuda.manual_seed(random_seed)
-    torch.use_deterministic_algorithms(True)
-    os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
+    # for reproducibility, but slow
+    # torch.use_deterministic_algorithms(True)
+    # os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
 
 def archive_code(trial_version):
     current_file_path = os.path.abspath(sys.argv[0])
