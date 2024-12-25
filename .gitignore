@@ -1,0 +1,10 @@
+/archive/*
+!/archive/.gitkeep
+/data/result/*
+!/data/result/.gitkeep
+/data/seldom/*
+!/data/seldom/.gitkeep
+/src/__pycache__
+/weight/*
+!/weight/class.pth
+!/weight/regression.pth

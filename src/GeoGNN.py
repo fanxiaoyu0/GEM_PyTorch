@@ -404,14 +404,10 @@ def calculate_molecule_meta_data_by_smiles(smiles):
         self_loop_bond_feature_value_index = len(bond_feature_possible_value_list) + 2
         molecule_meta_data[bond_feature_name] += [self_loop_bond_feature_value_index] * molecule.GetNumAtoms() # self loop
 
-    # for feature_name in atom_feature_name_list + bond_feature_name_list:
-    #     molecule_meta_data[feature_name] = np.array(molecule_meta_data[feature_name], dtype=np.int64)
-    # molecule_meta_data['edges'] = np.array(molecule_meta_data['edges'], dtype=np.int64)
-
     bond_length_list = []
     for source_atom_index, target_atom_index in molecule_meta_data['edges']:
         bond_length_list.append(np.linalg.norm(coordinate_list[target_atom_index] - coordinate_list[source_atom_index]))
-    # molecule_meta_data['bond_length'] = np.array(bond_length_list, dtype=np.float32)
+    molecule_meta_data['bond_length'] = bond_length_list
 
     def _calculate_bond_angle(vector_1, vector_2):
         vector_1_length = np.linalg.norm(vector_1)
@@ -442,8 +438,5 @@ def calculate_molecule_meta_data_by_smiles(smiles):
 
     molecule_meta_data['BondAngleGraph_edges'] = edge_pair_list
     molecule_meta_data['bond_angle'] = bond_angle_list
-
-    # molecule_meta_data['BondAngleGraph_edges'] = np.array(edge_pair_list, dtype=np.int64)
-    # molecule_meta_data['bond_angle'] = np.array(bond_angle_list, dtype=np.float32)
     return molecule_meta_data
     

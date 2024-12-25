@@ -5,6 +5,7 @@ import pickle as pkl
 import random
 from tqdm import tqdm, trange
 import time
+from copy import deepcopy
 import os
 import sys
 import matplotlib.pyplot as plt
@@ -76,7 +77,7 @@ def construct_data_list():
         if smiles in smiles_to_molecule_meta_data_dict:
             data_item = {
                 "smiles": smiles,
-                "molecule_meta_data": smiles_to_molecule_meta_data_dict[smiles],
+                "molecule_meta_data": deepcopy(smiles_to_molecule_meta_data_dict[smiles]),
                 "label": row['label'],
                 "dataset_type": row["dataset_type"],
             }
